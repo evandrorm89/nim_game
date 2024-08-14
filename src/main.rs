@@ -1,4 +1,5 @@
 use nim;
+
 fn main() {
     println!("Welcome to the NIM game!");
     let mut option: u8;
@@ -17,20 +18,19 @@ fn main() {
         }
     }
 
+    let mut score = nim::Score { you: 0, pc: 0 };
+
     if option == 1 {
         println!("You chose Isolated Match!");
-        nim::play();
+        nim::play(&mut score);
     } else {
         println!("You chose Championship!");
 
-        let you_points = 0;
-        let pc_points = 0;
-
         for i in 1..4 {
             println!("*** Match {} ***", i);
-            nim::play();
+            nim::play(&mut score);
         }
         println!("*** Championship ended! ***");
-        println!("You: {} x PC: {}", you_points, pc_points);
+        println!("You: {} x PC: {}", score.you, score.pc);
     }
 }
